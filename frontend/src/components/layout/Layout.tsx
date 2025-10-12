@@ -15,6 +15,9 @@ import { FinancialReports } from '../../pages/Reports/FinancialReports';
 import { BankIntegration } from '../../pages/Settings/BankIntegration';
 import { APIConfiguration } from '../../pages/Settings/APIConfiguration';
 import { SyncManagement } from '../../pages/Settings/SyncManagement';
+import { Statistics } from '../../pages/Analytics/Statistics';
+import { Charts } from '../../pages/Analytics/Charts';
+import { Reports } from '../../pages/Analytics/Reports';
 
 const Layout: React.FC = () => {
   const { user, isLoading } = useAuth();
@@ -54,6 +57,9 @@ const Layout: React.FC = () => {
             <Route path="/integrations" element={<BankIntegration />} />
             <Route path="/apis" element={<APIConfiguration />} />
             <Route path="/synchronisation" element={<SyncManagement />} />
+            <Route path="/statistiques" element={<Statistics />} />
+            <Route path="/graphiques" element={<Charts />} />
+            <Route path="/rapports" element={<Reports />} />
           </Routes>
         </main>
       </div>

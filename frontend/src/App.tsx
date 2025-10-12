@@ -18,6 +18,9 @@ import { FinancialReports } from './pages/Reports/FinancialReports';
 import { BankIntegration } from './pages/Settings/BankIntegration';
 import { APIConfiguration } from './pages/Settings/APIConfiguration';
 import { SyncManagement } from './pages/Settings/SyncManagement';
+import { Statistics } from './pages/Analytics/Statistics';
+import { Charts } from './pages/Analytics/Charts';
+import { Reports } from './pages/Analytics/Reports';
 
 function App() {
   return (

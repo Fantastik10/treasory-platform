@@ -14,6 +14,7 @@ import transactionRoutes from './routes/transactionRoutes';
 import financialRoutes from './routes/financialRoutes';
 import syncRoutes from './routes/syncRoutes';
 import bankConfigRoutes from './routes/bankConfigRoutes';
+import analyticsRoutes from './routes/analyticsRoutes';
 
 export const app = express();
 export const server = createServer(app);
@@ -71,6 +72,7 @@ app.use('/api/transactions', transactionRoutes);
 app.use('/api/financial', financialRoutes);
 app.use('/api/sync', syncRoutes);
 app.use('/api/bank-config', bankConfigRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // WebSockets
 setupNotificationSocket(io);

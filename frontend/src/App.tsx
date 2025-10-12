@@ -12,6 +12,10 @@ import { EspaceManagement } from './pages/Espace/EspaceManagement';
 import { UserAdmin } from './pages/Admin/UserAdmin';
 import { InternalMessaging } from './pages/Messaging/InternalMessaging';
 import './index.css';
+import { Accounts } from './pages/Financial/Accounts';
+import { Transactions } from './pages/Financial/Transactions';
+import { FinancialReports } from './pages/Reports/FinancialReports';
+
 
 function App() {
   return (

@@ -9,6 +9,9 @@ import { BureauDetail } from '../../pages/Bureau/BureauDetail';
 import { EspaceManagement } from '../../pages/Espace/EspaceManagement';
 import { UserAdmin } from '../../pages/Admin/UserAdmin';
 import { InternalMessaging } from '../../pages/Messaging/InternalMessaging';
+import { Accounts } from '../../pages/Financial/Accounts';
+import { Transactions } from '../../pages/Financial/Transactions';
+import { FinancialReports } from '../../pages/Reports/FinancialReports';
 
 const Layout: React.FC = () => {
   const { user, isLoading } = useAuth();
@@ -42,6 +45,9 @@ const Layout: React.FC = () => {
             <Route path="/espaces" element={<EspaceManagement />} />
             <Route path="/messagerie" element={<InternalMessaging />} />
             <Route path="/admin" element={<UserAdmin />} />
+            <Route path="/comptes" element={<Accounts />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/rapports" element={<FinancialReports />} />
           </Routes>
         </main>
       </div>

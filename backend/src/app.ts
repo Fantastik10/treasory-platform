@@ -9,6 +9,10 @@ import espaceRoutes from './routes/espaceRoutes';
 import messageRoutes from './routes/messageRoutes';
 import notificationRoutes from './routes/notificationRoutes';
 import { setupNotificationSocket } from './sockets/notificationSocket';
+import accountRoutes from './routes/accountRoutes';
+import transactionRoutes from './routes/transactionRoutes';
+import financialRoutes from './routes/financialRoutes';
+
 
 export const app = express();
 export const server = createServer(app);
@@ -61,6 +65,9 @@ app.use('/api/bureaux', bureauRoutes);
 app.use('/api/espaces', espaceRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/accounts', accountRoutes);
+app.use('/api/transactions', transactionRoutes);
+app.use('/api/financial', financialRoutes);
 
 // WebSockets
 setupNotificationSocket(io);

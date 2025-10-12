@@ -87,3 +87,79 @@ model Notification {
 
   @@map("notifications")
 }
+
+// Ajouter après les modèles existants
+
+model Account {
+  id        String      @id @default(uuid())
+  type      AccountType
+  name      String
+  balance   Float       @default(0)
+  currency  String      @default("EUR")
+  bureau    Bureau      @relation(fields: [bureauId], references: [id])
+  bureauId  String
+  isActive  Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  transactions Transaction[]
+
+  @@map("accounts")
+}
+
+model Transaction {
+  id          String        @id @default(uuid())
+  amount      Float
+  type        TransactionType
+  description String
+  category    String?
+  date        DateTime
+  account     Account       @relation(fields: [accountId], references: [id])
+  accountId   String
+  bureau      Bureau        @relation(fields: [bureauId], references: [id])
+  bureauId    String
+  createdBy   User          @relation(fields: [createdById], references: [id])
+  createdById String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("transactions")
+}
+
+model FinancialStats {
+  id           String    @id @default(uuid())
+  bureau       Bureau    @relation(fields: [bureauId], references: [id])
+  bureauId     String
+  period       String    // "2024-01", "2024-Q1", "2024"
+  totalIncome  Float     @default(0)
+  totalExpense Float     @default(0)
+  netFlow      Float     @default(0)
+  startBalance Float     @default(0)
+  endBalance   Float     @default(0)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@unique([bureauId, period])
+
+  @@map("financial_stats")
+}
+
+enum AccountType {
+  BANQUE
+  PAYPAL
+  CAISSE
+  MOBILE_MONEY
+  OTHER
+}
+
+enum TransactionType {
+  ENTREE
+  SORTIE
+}
+
+// Mettre à jour le modèle Bureau pour les relations
+model Bureau {
+  // ... champs existants ...
+  accounts     Account[]
+  transactions Transaction[]
+  stats        FinancialStats[]
+}

@@ -12,6 +12,9 @@ import { InternalMessaging } from '../../pages/Messaging/InternalMessaging';
 import { Accounts } from '../../pages/Financial/Accounts';
 import { Transactions } from '../../pages/Financial/Transactions';
 import { FinancialReports } from '../../pages/Reports/FinancialReports';
+import { BankIntegration } from '../../pages/Settings/BankIntegration';
+import { APIConfiguration } from '../../pages/Settings/APIConfiguration';
+import { SyncManagement } from '../../pages/Settings/SyncManagement';
 
 const Layout: React.FC = () => {
   const { user, isLoading } = useAuth();
@@ -48,6 +51,9 @@ const Layout: React.FC = () => {
             <Route path="/comptes" element={<Accounts />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/rapports" element={<FinancialReports />} />
+            <Route path="/integrations" element={<BankIntegration />} />
+            <Route path="/apis" element={<APIConfiguration />} />
+            <Route path="/synchronisation" element={<SyncManagement />} />
           </Routes>
         </main>
       </div>

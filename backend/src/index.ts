@@ -1,5 +1,6 @@
 import { server } from './app';
 import { connectDatabase } from './config/database';
+import { SyncScheduler } from './jobs/syncScheduler';
 
 const PORT = process.env.PORT || 3001;
 
@@ -14,6 +15,12 @@ connectDatabase()
       console.log(`📱 API available at http://localhost:${PORT}/api`);
       console.log(`🔌 WebSockets enabled`);
     });
+
+     // Démarrer le scheduler de synchronisation
+    if (process.env.NODE_ENV !== 'test') {
+      SyncScheduler.start();
+    }
+
   })
   .catch((error) => {
     console.error('❌ Database connection failed:', error);

@@ -15,7 +15,9 @@ import './index.css';
 import { Accounts } from './pages/Financial/Accounts';
 import { Transactions } from './pages/Financial/Transactions';
 import { FinancialReports } from './pages/Reports/FinancialReports';
-
+import { BankIntegration } from './pages/Settings/BankIntegration';
+import { APIConfiguration } from './pages/Settings/APIConfiguration';
+import { SyncManagement } from './pages/Settings/SyncManagement';
 
 function App() {
   return (

@@ -18,7 +18,9 @@
     "exceljs": "^4.4.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "node-cron": "^3.0.3",
     "socket.io": "^4.8.1",
+    "xlsx": "^0.18.5",
     "zod": "^4.1.12"
   },
   "devDependencies": {

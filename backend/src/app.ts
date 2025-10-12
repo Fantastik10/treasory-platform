@@ -12,7 +12,8 @@ import { setupNotificationSocket } from './sockets/notificationSocket';
 import accountRoutes from './routes/accountRoutes';
 import transactionRoutes from './routes/transactionRoutes';
 import financialRoutes from './routes/financialRoutes';
-
+import syncRoutes from './routes/syncRoutes';
+import bankConfigRoutes from './routes/bankConfigRoutes';
 
 export const app = express();
 export const server = createServer(app);
@@ -68,6 +69,8 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/accounts', accountRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/financial', financialRoutes);
+app.use('/api/sync', syncRoutes);
+app.use('/api/bank-config', bankConfigRoutes);
 
 // WebSockets
 setupNotificationSocket(io);

@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      UserRole
+  bureau    Bureau?  @relation(fields: [bureauId], references: [id])
+  bureauId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages       Message[]
+  notifications  Notification[]
+
+  @@map("users")
+}
+
+model EspaceTravail {
+  id        String   @id @default(uuid())
+  name      String
+  bureaux   Bureau[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("espaces_travail")
+}
+
+model Bureau {
+  id             String   @id @default(uuid())
+  name           String
+  color          String   @default("#3b82f6")
+  country        String   @default("FR")
+  espaceTravail  EspaceTravail @relation(fields: [espaceTravailId], references: [id])
+  espaceTravailId String
+  users          User[]
+  messages       Message[]
+  notifications  Notification[] 
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("bureaux")
+}
+
+enum UserRole {
+  ADMIN_1
+  ADMIN_2  
+  ADMIN_3
+  USER
+
+@@map("user_roles")
+}
+
+// Ajouter après les modèles existants
+
+model Message {
+  id        String   @id @default(uuid())
+  content   String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  bureau    Bureau   @relation(fields: [bureauId], references: [id])
+  bureauId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("messages")
+}
+
+model Notification {
+  id        String     @id @default(uuid())
+  type      String     // MESSAGE, TRANSACTION, SYSTEM
+  title     String
+  content   String?
+  isRead    Boolean    @default(false)
+  user      User       @relation(fields: [userId], references: [id])
+  userId    String
+  bureau    Bureau?    @relation(fields: [bureauId], references: [id])
+  bureauId  String?
+  createdAt DateTime   @default(now())
+
+  @@map("notifications")
+}

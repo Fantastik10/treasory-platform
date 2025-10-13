@@ -21,6 +21,9 @@ import { SyncManagement } from './pages/Settings/SyncManagement';
 import { Statistics } from './pages/Analytics/Statistics';
 import { Charts } from './pages/Analytics/Charts';
 import { Reports } from './pages/Analytics/Reports';
+import DonorManagement from './pages/Donors/DonorManagement';
+import DonorAnalytics from './pages/Donors/DonorAnalytics';
+import ReminderManagement from './pages/Donors/ReminderManagement';
 
 function App() {
   return (

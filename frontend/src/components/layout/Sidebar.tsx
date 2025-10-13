@@ -21,6 +21,8 @@ const Sidebar: React.FC = () => {
     { path: '/rapports', label: 'Rapports', icon: '📋' },
     { path: '/integrations', label: 'Intégrations', icon: '🔗' },
     { path: '/synchronisation', label: 'Synchronisation', icon: '🔄' },
+    { path: '/donateurs', label: 'Donateurs', icon: '👥' },
+    { path: '/analytiques-donateurs', label: 'Analytiques Donateurs', icon: '📊' }
   ];
 
   // Ajouter l'admin si l'utilisateur a les droits

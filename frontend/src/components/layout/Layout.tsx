@@ -18,6 +18,9 @@ import { SyncManagement } from '../../pages/Settings/SyncManagement';
 import { Statistics } from '../../pages/Analytics/Statistics';
 import { Charts } from '../../pages/Analytics/Charts';
 import { Reports } from '../../pages/Analytics/Reports';
+import DonorManagement from '../../pages/Donors/DonorManagement';
+import DonorAnalytics from '../../pages/Donors/DonorAnalytics';
+import ReminderManagement from '../../pages/Donors/ReminderManagement';
 
 const Layout: React.FC = () => {
   const { user, isLoading } = useAuth();
@@ -60,6 +63,9 @@ const Layout: React.FC = () => {
             <Route path="/statistiques" element={<Statistics />} />
             <Route path="/graphiques" element={<Charts />} />
             <Route path="/rapports" element={<Reports />} />
+            <Route path="/donors" element={<DonorManagement />} />
+            <Route path="/analytics" element={<DonorAnalytics />} />
+            <Route path='/bureau/:bureauId/reminders' element={<ReminderManagement />} />'
           </Routes>
         </main>
       </div>

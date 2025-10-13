@@ -1,5 +1,7 @@
+// backend/src/jobs/syncScheduler.ts
 import cron from 'node-cron';
 import { BankSyncService } from '../services/sync/BankSyncService';
+import { ReminderJob } from './reminderJob';
 
 export class SyncScheduler {
   static start() {
@@ -27,6 +29,11 @@ export class SyncScheduler {
       }
     });
 
+    // Démarrer le job de relances
+    const reminderJob = new ReminderJob();
+    reminderJob.start();
+    
+    console.log('✅ Job de relances automatiques démarré');
     console.log('[Scheduler] Sync scheduler started');
   }
 

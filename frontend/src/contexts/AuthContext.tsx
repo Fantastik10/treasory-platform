@@ -43,12 +43,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      console.log('🔐 Context - Login attempt:', { email, password });
+      console.log('Auth Context - Login attempt:', { email, password });
       const { user: userData, token } = await authService.login({
         email, 
         password
     });
-      console.log('✅ Context - Login successful:', userData);
+      console.log('Auth Context - Login successful:', userData);
       localStorage.setItem('authToken', token);
       setUser(userData);
     } finally {
@@ -59,7 +59,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const register = async (email: string, password: string, role?: string) => {
     setIsLoading(true);
     try {
-      const { user: userData, token } = await authService.register(email, password, role);
+      console.log('Auth Context - Register attempt:', { email, password, role });
+      const { user: userData, token } = await authService.register({email, password, role});
+      console.log('Auth Context - Register successful:', userData);
       localStorage.setItem('authToken', token);
       setUser(userData);
     } finally {

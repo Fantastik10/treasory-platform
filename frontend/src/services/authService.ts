@@ -62,7 +62,7 @@ export const authService = {
   },
 
   async register(data: RegisterData): Promise<AuthResponse> {
-    console.log('📝 Attempting registration for:', data.email);
+    console.log('Attempting registration for:', data.email);
     
     try {
       const cleanData = sanitizeAuthData(data);

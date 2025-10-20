@@ -2,6 +2,23 @@ import { Request, Response } from 'express';
 import { UserService } from '../services/userService';
 
 export const userController = {
+ async getAllUsers(req: Request, res: Response) {
+  try {
+    const users = await UserService.getAllUsers();
+      console.log('Users retrieved successfully:', users);
+      res.status(200).json({
+        message: 'Users retrieved successfully',
+        data: users
+      });
+    } catch (error) {
+      console.error('Error retrieving users:', error);
+      res.status(500).json({
+        error: 'Failed to retrieve users',
+        message: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  },
+
   async getProfile(req: Request, res: Response) {
     try {
       const userId = (req as any).user.userId;

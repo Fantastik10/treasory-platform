@@ -21,11 +21,11 @@ connectDatabase()
     SyncScheduler.start();
     
     // Démarrage du serveur
-    server.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`📱 API available at http://localhost:${PORT}/api`);
-      console.log(`🔌 WebSockets enabled`);
-    });
+  server.listen(Number(PORT), '0.0.0.0', () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📱 API available at http://localhost:${PORT}/api`);
+    console.log(`🔌 WebSockets enabled`);
+  });
   })
   .catch((error) => {
     console.error('❌ Database connection failed:', error);

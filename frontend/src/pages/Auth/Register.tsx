@@ -18,6 +18,8 @@ const Register: React.FC = () => {
     e.preventDefault();
     setError('');
 
+    console.log('button clicked !!!!')
+
     if (password !== confirmPassword) {
       setError('Les mots de passe ne correspondent pas');
       return;
@@ -34,7 +36,8 @@ const Register: React.FC = () => {
       await register(email, password, 'ADMIN_1');
       navigate('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.error || "Erreur lors de l'inscription");
+      setError(err.response?.data?.error || "Erreur lors de l'inscription modif valide \n\n" + err);
+      console.log('❌ Erreur complète:', err);
     } finally {
       setIsLoading(false);
     }

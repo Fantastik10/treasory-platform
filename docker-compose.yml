@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15
@@ -8,18 +6,23 @@ services:
       POSTGRES_USER: treasory_user
       POSTGRES_PASSWORD: treasory_password
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   backend:
-    build: ./backend
-    ports:
-      - "3001:3001"
+    build:
+      context: ./backend
+      args:
+        DATABASE_URL: "postgresql://treasory_user:treasory_password@postgres:5432/treasory?schema=public"
     environment:
-      DATABASE_URL: "postgresql://treasury_user:treasury_password@postgres:5432/treasury"
+      DATABASE_URL: "postgresql://treasory_user:treasory_password@postgres:5432/treasory?schema=public"
       JWT_SECRET: "development-jwt-secret-change-in-production"
       NODE_ENV: "development"
+      PORT: "3001"
+      FRONTEND_URL: "http://localhost:5173"
+    ports:
+      - "3001:3001"
     depends_on:
       - postgres
     volumes:
@@ -29,9 +32,12 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "5173:5173"        # Vite dev
+      - "24678:24678"      # (optionnel) HMR dédié si tu le forces
     depends_on:
       - backend
+    environment:
+      VITE_API_URL: "http://localhost:3001/api"
     volumes:
       - ./frontend:/app
       - /app/node_modules

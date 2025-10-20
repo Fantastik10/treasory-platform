@@ -1,6 +1,28 @@
 import { prisma } from '../config/database';
 
 export class UserService {
+  static async getAllUsers() {
+    return await prisma.user.findMany({
+    select: {
+      id: true,
+      email: true,
+      role: true,
+      bureau: {
+        select: {
+          id: true,
+          name: true,
+          color: true
+        }
+      },
+      createdAt: true,
+      updatedAt: true
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+    });
+  }
+
   static async getUserById(userId: string) {
     return await prisma.user.findUnique({
       where: { id: userId },

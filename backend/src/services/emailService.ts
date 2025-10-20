@@ -24,8 +24,12 @@ export class EmailService {
       },
     });
 
-    // Vérifier la configuration
-    this.verifyTransporter();
+    // Vérifier la configuration seulement si SMTP est configuré
+    if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+      this.verifyTransporter();
+    } else {
+      console.log('📧 Les emails seront loggés dans la console en mode développement');
+    }
   }
 
   /**
@@ -64,7 +68,7 @@ export class EmailService {
       }
     } catch (error) {
       console.error('❌ Erreur lors de l\'envoi de l\'email:', error);
-      throw new Error(`Impossible d'envoyer l'email: ${error.message}`);
+      throw new Error(`Impossible d'envoyer l'email: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 

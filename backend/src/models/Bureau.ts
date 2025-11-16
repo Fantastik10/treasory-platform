@@ -22,6 +22,9 @@ export class Bureau {
   @ManyToOne(() => EspaceTravail, espaceTravail => espaceTravail.bureaux)
   espaceTravail!: EspaceTravail;
 
+  @OneToMany(() => Account, account => account.bureau)
+  accounts!: Account[];
+
   @OneToMany(() => User, user => user.bureau)
   utilisateurs!: User[];
 

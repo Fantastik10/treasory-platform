@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { accountController } from '../controllers/accountController';
+import { AccountController } from '../controllers/accountController';
 import { authenticateToken } from '../middleware/authMiddleware';
 import { validateData } from '../middleware/validationMiddleware';
 import { z } from 'zod';
 
 const router = Router();
+const accountController = new AccountController();
 
 const createAccountSchema = z.object({
   name: z.string().min(1),

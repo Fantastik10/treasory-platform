@@ -48,6 +48,22 @@ app.use(express.json({
   }
 }));
 
+app.get('/api', (req, res) => {
+  res.json({
+    name: 'Trésorerie Platform API',
+    version: '1.0.0',
+    status: '✅ Online',
+    author: 'Carry Kouadio',
+    endpoints: {
+      accounts: '/api/accounts',
+      users: '/api/users',
+      bureaux: '/api/bureaux',
+      donors: '/api/donors',
+      reminders: '/api/reminders'
+    }
+  });
+});
+
 // Middleware de logging pour debug
 app.use((req, res, next) => {
   console.log(`📨 ${req.method} ${req.path}`);

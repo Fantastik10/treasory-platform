@@ -15,12 +15,12 @@ export class EmailService {
     // Configuration pour le transporteur d'emails
     // En développement, on peut utiliser Ethereal Email pour les tests
     this.transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.ethereal.email',
-      port: parseInt(process.env.SMTP_PORT || '587'),
+      host: process.env.BREVO_HOST || 'smtp.ethereal.email',
+      port: parseInt(process.env.BREVO_PORT || '587'),
       secure: false, // true pour le port 465, false pour les autres ports
       auth: {
-        user: process.env.SMTP_USER || 'test@ethereal.email',
-        pass: process.env.SMTP_PASS || 'test',
+        user: process.env.BREVO_USER || '985deb001@smtp-brevo.com',
+        pass: process.env.BREVO_PASS || 'f85qQSYdC3UMP4ZE',
       },
     });
 
@@ -55,7 +55,7 @@ export class EmailService {
 
     try {
       // En production, envoyer réellement l'email
-      if (process.env.NODE_ENV === 'production' && process.env.SMTP_HOST) {
+      if (process.env.NODE_ENV === 'production' && process.env.BREVO_HOST) {
         const info = await this.transporter.sendMail(mailOptions);
         console.log(`📧 Email envoyé à ${options.to}: ${info.messageId}`);
       } else {

@@ -44,6 +44,7 @@ export const BureauForm: React.FC<BureauFormProps> = ({
   const [country, setCountry] = useState('FR');
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log('📤 Données envoyées:', data);
     e.preventDefault();
     if (!name.trim()) return;
 

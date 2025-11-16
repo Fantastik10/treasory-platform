@@ -31,10 +31,11 @@ const Register: React.FC = () => {
     setIsLoading(true);
 
     try {
-      await register(email, password, 'ADMIN_1');
+      await register({email, password, role: 'ADMIN_1'});
       navigate('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.error || "Erreur lors de l'inscription");
+      console.error('❌ Registration error:', err);
     } finally {
       setIsLoading(false);
     }

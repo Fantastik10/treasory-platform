@@ -10,7 +10,7 @@ import { Modal } from '../../components/ui/Modal';
 import { TransactionForm } from '../../components/financial/TransactionForm';
 import { analyticsService, DashboardStats, ChartData } from '../../services/analyticsService';
 import { useTransactions } from '../../hooks/useTransactions';
-import { CurrencyDisplay } from '../../components/ui/CurrencyDisplay';
+//import { CurrencyDisplay } from '../../components/ui/CurrencyDisplay';
 
 export const Dashboard: React.FC = () => {
   const { currentBureau } = useBureau();
@@ -24,6 +24,7 @@ export const Dashboard: React.FC = () => {
     useTransactions(currentBureau?.id);
 
   useEffect(() => {
+    console.log("📊 currentBureau:", currentBureau);
     if (currentBureau) {
       loadDashboardData();
       refreshTransactions();

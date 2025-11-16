@@ -18,9 +18,6 @@ const Sidebar: React.FC = () => {
     { path: '/synchronisation', label: 'Synchronisation', icon: '🔄' },
     { path: '/statistiques', label: 'Statistiques', icon: '📈' },
     { path: '/graphiques', label: 'Graphiques', icon: '📊' },
-    { path: '/rapports', label: 'Rapports', icon: '📋' },
-    { path: '/integrations', label: 'Intégrations', icon: '🔗' },
-    { path: '/synchronisation', label: 'Synchronisation', icon: '🔄' },
     { path: '/donateurs', label: 'Donateurs', icon: '👥' },
     { path: '/analytiques-donateurs', label: 'Analytiques Donateurs', icon: '📊' }
   ];
